@@ -1,0 +1,8 @@
+Input: coords
+Output: perimetr
+
+Input: 0 0 0 1 2 3
+Output: 7.433978
+
+Input: 7 8 9 2 3 4
+Output: 18.305965

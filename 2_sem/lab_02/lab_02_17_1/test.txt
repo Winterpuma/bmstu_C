@@ -1,0 +1,14 @@
+Input: Positive number
+Output: Numerals splited by space
+
+In: 12345;
+Out: 1 2 3 4 5;
+
+In: 4;
+Out: 4;
+
+In: -33;
+Out: Inputed number not positive.
+
+In: hello;
+Out: Wrong input.

@@ -1,0 +1,6 @@
+Input: size of sqc
+Output: random sqc, sorted sqc.
+
+In: 8
+Out: 1 7 1 3 9 5 2 0
+     0 1 1 2 3 5 7 9 

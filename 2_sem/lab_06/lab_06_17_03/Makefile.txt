@@ -1,0 +1,12 @@
+%.o : %.c *.h
+	gcc -c $<
+
+app.exe: func.o main.o
+	gcc -o app.exe func.o main.o
+
+test.exe: func.o test.o 
+	gcc -o test.exe func.o test.o
+
+clean:
+	rm *.o *.exe
+	

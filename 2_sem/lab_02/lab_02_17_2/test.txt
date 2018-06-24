@@ -1,0 +1,17 @@
+Input: first 2 dots coords(x1 y1 x2 y2), second 2 dots coords(x3 y3 x4 y4);
+Output: Intersect/Don't intersect;
+
+Input: 1 1 2 2, 2 0 3 1;
+Output: Don't intersect;
+
+Input: 1 1 2 2, 2 4 2 2;
+Output: Intersect;
+
+Input: 4 3 7 6, 4 6 7 3;
+Output: Intersect;
+
+Input: -1 -1 -2 -2, -2 -2 -3 -3;
+Output: Intersect;
+
+Input: 0 0 0 0, 1 1 1 1;
+Output: Not segments.

@@ -1,0 +1,31 @@
+Function: 1/ sqrt(1 - x*x)
+Input: x, eps;
+Output: f(x), s(x), absolute, relative errors;
+
+Input: 1 0.5;
+Output: program takes only |x| < 1;
+
+Input: 0.5 0.1
+Output: 
+f(x) = 1.1547
+g(x) = 1 + 0.125 = 1.125
+Absolute error: 0.0297
+Relative error: 0.025721
+ 
+ // Lol?
+Input: 0.99 0.5
+Output:
+f(x) = 7,08881
+s(x) = 1 (because 2nd term = 0.49005)
+Absoluter error = 6.08881
+Relative error = 0.858933
+
+Input: 0 0.1
+Output:
+f(x) = 1
+s(x) = 1
+Absolute error = 0
+Relative error = 0
+
+Input: 0.5 -0.1;
+Output: program takes only positive eps.

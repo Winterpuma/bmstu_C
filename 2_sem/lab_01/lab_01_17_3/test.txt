@@ -1,0 +1,11 @@
+Input: R1 R2 R3
+Output: Total resistance
+
+Input: 1 1 1
+Output: 0.333333
+
+Input: 3 3 3
+Output: 1
+
+Input: 6 9 3
+Output: 1.636364

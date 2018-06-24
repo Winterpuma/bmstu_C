@@ -1,0 +1,12 @@
+func.o:	func.c
+	gcc -c func.c
+
+main.o: main.c
+	gcc -c main.c
+
+main.exe: func.o main.o
+	gcc -o main.exe func.o main.o
+
+clean:
+	rm *.o *.exe
+	

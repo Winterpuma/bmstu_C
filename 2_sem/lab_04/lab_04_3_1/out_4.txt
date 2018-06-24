@@ -1,0 +1,2 @@
+No elements divisible by 3.  
+New array: 1 2 4 5 7 8  

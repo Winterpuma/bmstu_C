@@ -1,0 +1,2 @@
+Input finished.  
+Product of all odd numbers is: -7425  

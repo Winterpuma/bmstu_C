@@ -1,0 +1,8 @@
+Input: 100
+Output: 0:1:40
+
+Input: 100000
+Output: 27:46:40
+
+Input: 1024
+Output: 0:17:4
