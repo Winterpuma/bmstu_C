@@ -1,8 +1,7 @@
 #include <stdio.h>
 
-#include "input.h" //?
+#include "input.h"
 #include "memory.h"
-#include "output.h"
 
 // Scanf matrix from file
 float **input(FILE *f, int *n, int *m)
@@ -14,12 +13,20 @@ float **input(FILE *f, int *n, int *m)
     {
         fscanf(f, "%d %d %d", n, m, &non_zero);
         matr = alloc_mat(*n, *m);
+        zero_matr(matr, *n, *m);
         for(int i = 0; i < non_zero; i++)
         {
             fscanf(f, "%d %d", &in_i, &in_j);
             fscanf(f, "%f", &(matr[in_i-1][in_j-1]));
         }
     }
-    print_mat(matr, *n, *m);
     return matr;
+}
+
+// Zero all elements of matrix
+void zero_matr(float **matr, int n, int m)
+{
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            matr[i][j] = 0.0;
 }

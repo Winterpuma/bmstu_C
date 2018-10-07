@@ -16,6 +16,8 @@ void process(char *argv[], int key)
         block_multiply(argv);
     else if (key == det)
         block_det(argv);
+    else if (key == help)
+        get_help();
 }
 
 void block_add(char *argv[])
@@ -45,9 +47,9 @@ void block_add(char *argv[])
         }
         else if (n1 == n2 && m1 == m2)
         {
-            matr1 = addition(matr1, matr2, n1, m2); // res arr?
-            output(out, matr1, n1, m1);
+            matr1 = addition(matr1, matr2, n1, m2);
             print_mat(matr1, n1, m1);
+            output(out, matr1, n1, m1);
         }
         else
         {
@@ -55,8 +57,8 @@ void block_add(char *argv[])
             fprintf(out, "Addition error: wrong size of matrix");
         }
 
-        free(matr1);
-        free(matr2);
+        free_mat(matr1);
+        free_mat(matr2);
     }
 
     fclose(in1);
@@ -93,16 +95,17 @@ void block_multiply(char *argv[])
         {
             res = alloc_mat(n1, m2);
             res = multiplication(matr1, matr2, res, n1, m1, n2, m2);
+            print_mat(res, n1, m2);
             output(out, res, n1, m2);
-            free(res);
+            free_mat(res);
         }
         else
         {
             printf("Multiplication error: wrong size of matrix");
             fprintf(out, "Multiplication error: wrong size of matrix");
         }
-        free(matr1);
-        free(matr2);
+        free_mat(matr1);
+        free_mat(matr2);
     }
 
     fclose(in1);
@@ -136,6 +139,7 @@ void block_det(char *argv[])
         else if (n == m)
         {
             res = determinator(matr, n);
+            printf("Det: %f", res);
             fprintf(out, "%f", res);
         }
         else
@@ -143,11 +147,31 @@ void block_det(char *argv[])
             printf("Wrong size of matrix");
             fprintf(out, "Wrong size of matrix");
         }
-        free(matr);
+        free_mat(matr);
     }
 
     fclose(in);
     fclose(out);
+}
+
+// Show help info in console
+void get_help()
+{
+    puts("\nHello, friend.");
+    puts("\nTo add two matrices you should use (a) operation flag:");
+    puts("./app.exe a in1_file.txt in2_file.txt out_file.txt");
+
+    puts("\nTo multiply two matrices you should use (m) operation flag:");
+    puts("./app.exe m in1_file.txt in2_file.txt out_file.txt");
+
+    puts("\nTo calculate determinator you should use (o) operation flag:");
+    puts("./app.exe o in_file.txt out_file.txt");
+
+    puts("\nStructure of input file:");
+    puts("#rows #columns #non_zero_elements");
+    puts("index_row index_column value");
+
+    puts("\nProgram was made by Tanya Obergan");
 }
 
 // returns negative if error, positive - operation number
@@ -185,7 +209,6 @@ int check_args(int argc, char *argv[])
     else if (!strcmp(argv[1], "h"))
     {
         flag = help;
-        printf("HEEELP!");
     }
     else
     {

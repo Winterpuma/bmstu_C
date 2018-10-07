@@ -7,6 +7,7 @@ void process(char *argv[], int key);
 void block_add(char *argv[]);
 void block_multiply(char *argv[]);
 void block_det(char *argv[]);
+void get_help();
 
 int check_args(int argc, char *argv[]);
 

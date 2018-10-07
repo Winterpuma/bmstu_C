@@ -11,7 +11,6 @@ float **addition(float **matr1, float **matr2, int n, int m)
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
             matr1[i][j] += matr2[i][j];
-    //print_mat(matr1, n, m);
     return matr1;
 }
 
@@ -30,7 +29,6 @@ float **multiplication(float **matr1, float **matr2, float **res, int n1, int m1
                 tmp += matr1[i][k] * matr2[k][j];
             res[i][j] = tmp;
         }
-    //print_mat(res, n1, m2);
     return res;
 }
 
@@ -88,7 +86,6 @@ float determinator(float **matr, int n)
     triangulation(matr, n);
     for (int i = 0; i < n; i++)
         det *= matr[i][i];
-    printf("\nDet: %f", det);
     return det;
 }
 
@@ -97,11 +94,7 @@ int compare_zero(float num)
 {
     int flag = 1;
 
-    if (num == 0)
-        flag = 0;
-    if (num < 0 && (num+EPS) > 0)
-        flag = 0;
-    else if (num > 0 && (num-EPS) < 0)
+    if (fabs(num) < EPS)
         flag = 0;
 
     return flag;

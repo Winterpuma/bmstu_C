@@ -16,8 +16,8 @@ int main()
     char *test3_argv[] = {"test.exe", "o", "TC/in3.txt", "TC/out0.txt"};
     test(4, test3_argv, '3', 1);
 
-    test(2, test1_argv, '4', 0);
-    test(3, test3_argv, '5', 0);
+    test_args(2, test1_argv, '4', -1);
+    test_args(3, test3_argv, '5', -1);
 
     char *test6_argv[] = {"test.exe", "m", "TC/in6_1.txt", "TC/in6_2.txt", "TC/out0.txt"};
     test(5, test6_argv, '6', 0);
@@ -27,12 +27,6 @@ int main()
 
     char *test8_argv[] = {"test.exe", "o", "TC/in8.txt", "TC/out0.txt"};
     test(4, test8_argv, '8', 0);
-
-
-
-
-    //enum OPERATION {add = 1, multiply = 2, det = 3, help = 4};
-
 
     return 0;
 }
@@ -55,14 +49,26 @@ void test(int argc, char *argv[], char TC, int compare_type)
     ftc = fopen(out_name, "r");
 
     if ((compare_type) ? (!compare_files(ftc, fres, flag)) : (!compare_err(ftc, fres)))
-        printf("\nTest %c passed.\n", TC);
+        printf("\nTest %c passed.\n\n", TC);
     else
-        printf("\nTest %c failed.\n", TC);
+        printf("\nTest %c failed.\n\n", TC);
 
     fclose(fres);
     fclose(ftc);
 }
 
+// Check check_args function
+void test_args(int argc, char *argv[], char TC, int flag)
+{
+
+    int flag_res = check_args(argc, argv);
+
+    if (flag_res == flag)
+        printf("\nTest %c passed.\n\n", TC);
+    else
+        printf("\nTest %c failed.\n\n", TC);
+
+}
 
 // returns 0 if two files are identical
 int compare_files(FILE *f1, FILE *f2, int fl_det)

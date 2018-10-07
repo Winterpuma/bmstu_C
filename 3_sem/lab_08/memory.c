@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "memory.h" //?
+#include "memory.h"
 
 float **alloc_mat(int n, int m)
 {
@@ -14,4 +14,9 @@ float **alloc_mat(int n, int m)
             *(a+i) = beg + m*i;
     }
     return a;
+}
+
+void free_mat(float **matr)
+{
+    free(matr);
 }
