@@ -5,7 +5,8 @@
 
 #define EPS 0.001
 
-// Will add elements of second matrix to first
+/* Will add elements of second matrix to first
+ * matr1, matr2 - matrices; n, m - their size; */
 float **addition(float **matr1, float **matr2, int n, int m)
 {
     for (int i = 0; i < n; i++)
@@ -15,7 +16,9 @@ float **addition(float **matr1, float **matr2, int n, int m)
 }
 
 
-// Multiply two matrices and return resulted matrix
+/* Multiply two matrices and return resulted matrix
+ * matr1, matr2 - matrices to multiply, res - resulting matrix,
+ * n1, m1, n2, m2 - size of matrices */
 float **multiplication(float **matr1, float **matr2, float **res, int n1, int m1, int n2, int m2)
 {
     //m1 == n2!
@@ -32,7 +35,8 @@ float **multiplication(float **matr1, float **matr2, float **res, int n1, int m1
     return res;
 }
 
-// Swap two rows in matrix
+/* Swap two rows in matrix
+ * matr - matrix, n1, n2 - indexes of rows to swap */
 void swap_rows(float **matr, int n1, int n2)
 {
     float *tmp = matr[n1];
@@ -40,7 +44,9 @@ void swap_rows(float **matr, int n1, int n2)
     matr[n2] = tmp;
 }
 
-// Will find max element in column and return row index of that element
+/* Will find max element in column and return row index of that element
+ * matr - matrix, col_index - collumn index, n - size of matr;
+ * max_row - index of row with max element in column */
 int max_in_col(float **matr, int col_index, int n)
 {
     int max_row = col_index;
@@ -52,14 +58,16 @@ int max_in_col(float **matr, int col_index, int n)
     return max_row;
 }
 
-// Add row1 to row2 multiplied by multiplier
+/* Add row1 to row2 multiplied by multiplier
+ * matr - matrix, n - size, row1 row2 - index of rows to add */
 void add_rows(float **matr, int n, int row1, int row2, float multiplier)
 {
     for (int i = 0; i < n; i++)
         matr[row2][i] += matr[row1][i] * multiplier;
 }
 
-// Triangulate given matrix
+/* Triangulate given matrix
+ * matr - matrix, n - size */
 void triangulation(float **matr, int n)
 {
     float multiplier;
@@ -79,7 +87,9 @@ void triangulation(float **matr, int n)
     }
 }
 
-// Counts determinator of matrix
+/* Counts determinator of matrix
+ * matr - matrix, n - size;
+ * det - determinator */
 float determinator(float **matr, int n)
 {
     float det = 1;
@@ -89,7 +99,8 @@ float determinator(float **matr, int n)
     return det;
 }
 
-// returns 0 if number is in [-EPS; +EPS] range
+/* returns 0 if number is in [-EPS; +EPS] range
+ * num - number; flag - resulting flag */
 int compare_zero(float num)
 {
     int flag = 1;
@@ -100,7 +111,8 @@ int compare_zero(float num)
     return flag;
 }
 
-// returns 0 if |num1-num2| < EPS
+/* returns 0 if |num1-num2| < EPS
+ * num1, num2 - numbers to compare */
 int compare_float(float num1, float num2)
 {
     num1 -= num2;

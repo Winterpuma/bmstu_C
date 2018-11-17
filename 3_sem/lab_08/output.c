@@ -2,7 +2,8 @@
 #include "output.h"
 #include "operations.h"
 
-// Print out matrix to console
+/* Print out matrix to console
+ * a - matrix, n, m - size */
 void print_mat(float **a, int n, int m)
 {
     for (int i = 0; i < n; i++)
@@ -13,7 +14,9 @@ void print_mat(float **a, int n, int m)
     }
 }
 
-// Count non-zero elements in matrix
+/* Count non-zero elements in matrix
+ * matr - matrix, n, m - size;
+ * elements - amount of non-zero elements */
 int count_non_zero(float **matr, int n, int m)
 {
     int elements = 0;
@@ -24,7 +27,8 @@ int count_non_zero(float **matr, int n, int m)
     return elements;
 }
 
-// Output matrix to file
+/* Output matrix to file
+ * f - file, matr - matrix, n, m - size */
 void output(FILE *f, float **matr, int n, int m)
 {
     fprintf(f, "%d %d %d\n", n, m, count_non_zero(matr, n, m));

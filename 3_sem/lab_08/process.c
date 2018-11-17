@@ -174,7 +174,7 @@ void get_help()
     puts("\nProgram was made by Tanya Obergan");
 }
 
-// returns negative if error, positive - operation number
+/* returns negative if error, positive - operation number */
 int check_args(int argc, char *argv[])
 {
     int flag = 0;

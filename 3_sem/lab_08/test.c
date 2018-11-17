@@ -31,7 +31,8 @@ int main()
     return 0;
 }
 
-// Simulates run of main with args and compares results
+/* Simulates run of main with args and compares results
+ * TC - TC number, compare_type - comparison of results type flag */
 void test(int argc, char *argv[], char TC, int compare_type)
 {
     FILE *ftc; // correct ftc
@@ -57,7 +58,8 @@ void test(int argc, char *argv[], char TC, int compare_type)
     fclose(ftc);
 }
 
-// Check check_args function
+/* Check check_args function
+ * TC - TC number, flag - expected result*/
 void test_args(int argc, char *argv[], char TC, int flag)
 {
 
@@ -70,7 +72,8 @@ void test_args(int argc, char *argv[], char TC, int flag)
 
 }
 
-// returns 0 if two files are identical
+/* returns 0 if two files are identical
+ * f1, f2 - files, fl_det - compare determinator files */
 int compare_files(FILE *f1, FILE *f2, int fl_det)
 {
     int flag = 0;
@@ -116,7 +119,8 @@ int compare_files(FILE *f1, FILE *f2, int fl_det)
     return flag;
 }
 
-// returns 0 if two files are identical
+/* returns 0 if two files are identical
+ * f1, f2 - files to compare */
 int compare_err(FILE *f1, FILE *f2)
 {
     int flag = 0;

@@ -3,6 +3,9 @@
 
 #include "memory.h"
 
+/* Allacate memory for matrix
+ * n, m - size of matrix;
+ * a - matrix; */
 float **alloc_mat(int n, int m)
 {
     float **a = NULL;
@@ -16,6 +19,8 @@ float **alloc_mat(int n, int m)
     return a;
 }
 
+/* Free matrix
+ * matr - matrix */
 void free_mat(float **matr)
 {
     free(matr);

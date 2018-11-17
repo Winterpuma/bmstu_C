@@ -3,7 +3,9 @@
 #include "input.h"
 #include "memory.h"
 
-// Scanf matrix from file
+/* Scanf matrix from file
+ * f - file; n, m - pointes to size of matrix
+ * matr - inputed matrix */
 float **input(FILE *f, int *n, int *m)
 {
     int in_i = 0, in_j = 0;
@@ -23,7 +25,8 @@ float **input(FILE *f, int *n, int *m)
     return matr;
 }
 
-// Zero all elements of matrix
+/* Zero all elements of matrix
+ * matr - matrix, n, m - size; */
 void zero_matr(float **matr, int n, int m)
 {
     for (int i = 0; i < n; i++)
