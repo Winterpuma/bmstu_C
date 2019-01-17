@@ -1,0 +1,11 @@
+1) in/out from file
+
+2) sort 0 elements
+3) sort 1 element
+4) sort sorted
+5) sort reversed
+
+6) remove last element (len 1)
+7) remeve last element (len 3)
+
+8) reverse list
