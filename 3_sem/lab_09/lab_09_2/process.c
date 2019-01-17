@@ -22,6 +22,7 @@ void process(FILE *f_in, FILE *f_out, const char *search, const char *replace)
     {
         str_edited = str_replace(str, search, replace);
         fprintf(f_out, "%s", str_edited);
+        //printf("%s", str_edited);
     }
 
     free(str);

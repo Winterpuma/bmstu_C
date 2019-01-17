@@ -34,19 +34,17 @@ int compare_files(FILE *f1, FILE *f2)
     else if (f1 == NULL && f2 == NULL)
         flag = 0;
     else
-        while (1)
+    {
+        do
         {
             ch1 = getc(f1);
             ch2 = getc(f2);
 
-            if (feof(f1) && feof(f2))
-                break;
-            else if (feof(f1) || feof(f2) || ch1 != ch2)
-            {
+            if (!(feof(f1) && feof(f2)) && (feof(f1) || feof(f2)))
                 flag = 1;
-                break;
-            }
         }
+        while (!feof(f1) && !feof(f2) && !flag);
+    }
     return flag;
 }
 

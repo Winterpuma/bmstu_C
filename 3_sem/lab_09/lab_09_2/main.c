@@ -14,13 +14,13 @@ int main(int argc, char *argv[])
     }
 
     FILE *f_in = fopen(argv[1], "r");
-    if (!f_in)
-    {
-        printf("File doesn't exist");
-        return -1;
-    }
-
     FILE *f_out = fopen(argv[2], "w");
+
+    if (!f_in || !f_out)
+    {
+        printf("File error");
+        return -2;
+    }
 
     process(f_in, f_out, argv[3], argv[4]);
 

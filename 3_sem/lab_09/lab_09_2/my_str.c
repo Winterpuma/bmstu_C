@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <strings.h>
 
+#include "my_str.h"
+
 #define BUF_SIZE 10
 #define MALLOC_STEP 10
 
@@ -17,25 +19,33 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
     if (!stream)
         return -1;
 
+    int flag = 1;
     char buf[BUF_SIZE];
     size_t buf_size = 0;
 
     *lineptr = NULL;
     *n = 0;
 
-    while(fgets(buf, BUF_SIZE, stream))
+    while(flag && fgets(buf, BUF_SIZE, stream))
     {
         buf_size = strlen(buf);
 
         *lineptr = (char *)realloc(*lineptr, *n + buf_size + 1);
+        if (!(*lineptr))
+        {
+            flag = 0;
+            *n = 0;
+        }
+        else
+        {
+            memcpy(*lineptr + *n, buf, buf_size);
+            *n += buf_size;
 
-        memcpy(*lineptr + *n, buf, buf_size);
-        *n += buf_size;
+            (*lineptr)[(*n)] = 0;
 
-        (*lineptr)[(*n)] = 0;
-
-        if ((*lineptr)[(*n)-1] == '\n')
-            break;
+            if ((*lineptr)[(*n)-1] == '\n')
+                flag = 0;
+        }
     }
 
     return *n;
@@ -59,7 +69,7 @@ int add_char(const char *str, const char *search, const char *replace, char **my
     int replace_size = strlen(replace);
 
     int flag_same = 1;
-
+    int flag_error = 0;
 
     for (int j = 0; j < search_size && flag_same; j++)
     {
@@ -71,30 +81,46 @@ int add_char(const char *str, const char *search, const char *replace, char **my
     {
         if (*max_size - *curr_size < replace_size + 1)
         {
-            *my_str = (char *)realloc(*my_str, *max_size + replace_size + 1);
-            *max_size += replace_size;
-            if (!my_str)
-                return -1;
+            realloc_str(my_str, max_size, replace_size, 1);
+            if (!(*my_str))
+                flag_error = -1;
         }
-        memcpy(*my_str + *curr_size, replace, replace_size+1);
-        *curr_size += replace_size;
-        *i += search_size - 1;
+        if (!flag_error)
+        {
+            memcpy(*my_str + *curr_size, replace, replace_size+1);
+            *curr_size += replace_size;
+            *i += search_size - 1;
+        }
     }
     else
     {
         if (*max_size - *curr_size < 2)
         {
-            *my_str = (char *)realloc(*my_str, *max_size + MALLOC_STEP);
-            *max_size += MALLOC_STEP;
-            if (!my_str)
-                return -1;
+            realloc_str(my_str, max_size, MALLOC_STEP, 0);
+            if (!(*my_str))
+                flag_error = -1;
         }
-        (*my_str)[*curr_size] = str[*i];
-        (*my_str)[*curr_size+1] = 0;
-        (*curr_size)++;
+        if (!flag_error)
+        {
+            (*my_str)[*curr_size] = str[*i];
+            (*my_str)[*curr_size+1] = 0;
+            (*curr_size)++;
+        }
     }
+    return flag_error;
+}
 
-    return 0;
+/**
+ * Realloc string. Allocation check should be on calling side.
+ * @param str - pointer to pointer to str
+ * @param max_size pointer to max_size of str
+ * @param size - how mush memory to add
+ * @param flag - extra bit for '\0'
+ */
+void realloc_str(char **str, int *max_size, int size, int flag)
+{
+    *str = (char *)realloc(*str, *max_size + size + flag);
+    *max_size += size;
 }
 
 /**
